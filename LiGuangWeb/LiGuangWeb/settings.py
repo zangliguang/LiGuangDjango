@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for LiGuangWeb project.
 
@@ -37,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'liguang_first',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,8 +78,10 @@ WSGI_APPLICATION = 'LiGuangWeb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME':'db_python_liguang',
+        'USER':'root',
+        'PASSWORD':'asd1215225',
     }
 }
 
