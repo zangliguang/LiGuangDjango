@@ -20,14 +20,10 @@ class UUIDField(models.CharField) :
             return value
         else:
             return super(models.CharField, self).pre_save(model_instance, add)
-class User(models.Model):
+class CustomUser(models.Model):
     user = models.OneToOneField(User)
     def __str__(self):              # __unicode__ on Python 2
-        return self.username
-    # user_id = UUIDField(primary_key=True, editable=False)
-    # user_loginname = models.CharField(max_length=32)
-    # user_password = models.CharField(max_length=32)
-    # value = models.CharField(max_length=255, blank=True)
+        return self.user.username
 
 class BusinessClass(models.Model):
     businessclass_id=UUIDField(primary_key=True, editable=False)
