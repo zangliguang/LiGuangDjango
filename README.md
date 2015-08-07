@@ -6,9 +6,9 @@
 3，创建管理员用户 python manage.py createsuperuser 完成后打开http://127.0.0.1:8000/admin/测试  
 4，设置DB：settings 文件DATABASES中设置DB信息  
 5，添加module文件,
-运行python manage.py makemigrations 来为这些修改创建迁移文件
-运行pythonmanage.py migrate 以运用这些改变到数据库中（mysql注意刷新）  
-在module中定义self方法，查询是可显示自定义内容格式，例如：
+   运行python manage.py makemigrations 来为这些修改创建迁移文件
+  运行pythonmanage.py migrate 以运用这些改变到数据库中（mysql注意刷新）  
+  在module中定义self方法，查询是可显示自定义内容格式，例如：
        
      def __str__(self):
             return self.businessclass_name
