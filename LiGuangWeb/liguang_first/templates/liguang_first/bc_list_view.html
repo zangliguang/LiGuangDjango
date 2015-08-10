@@ -1,0 +1,11 @@
+bclist <br>
+
+{% if BusinessClasslist %}
+    <ul>
+    {% for bc in BusinessClasslist %}
+        <li><a href="/liguang_first/businessclass/{{ bc.id }}/">{{ bc.businessclass_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>businessclass are available.</p>
+{% endif %}

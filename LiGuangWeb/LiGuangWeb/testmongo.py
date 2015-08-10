@@ -1,7 +1,7 @@
-__author__ = 'zangliguang'
-#连接mongodb测试
 import pymongo
-conn = pymongo.Connection("127.0.0.1",27017)
+__author__ = 'zangliguang'
+# 连接mongodb测试
+conn = pymongo.Connection("127.0.0.1", 27017)
 db = conn.dbmeizi
 db = conn.foo
 content = db.meizi.find()
