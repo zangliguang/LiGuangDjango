@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bclist/', views.bclist),
     url('^$', views.rendertoHome),
+    url(r'^liguang_first/', include('liguang_first.urls')),
 ]

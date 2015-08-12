@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.db import models
-from django.contrib.auth.models import User
 import uuid
 
 
@@ -20,11 +19,11 @@ class UUIDField(models.CharField):
             return super(models.CharField, self).pre_save(model_instance, add)
 
 
-class User(models.Model):
-    user = models.OneToOneField(User)
+# class User(models.Model):
+#     user = models.OneToOneField(User)
 
-    def __unicode__(self):           # __unicode__ on Python 2
-        return self.username
+# def __unicode__(self):           # __unicode__ on Python 2
+#         return self.username
     # user_id = UUIDField(primary_key=True, editable=False)
     # user_loginname = models.CharField(max_length=32)
     # user_password = models.CharField(max_length=32)
@@ -48,3 +47,12 @@ class Business(models.Model):
 
     def __unicode__(self):
         return self.business_name
+
+
+class User(models.Model):
+    userid = UUIDField(primary_key=True, editable=False)
+    username = models.CharField(max_length=50)
+    password = models.CharField(password=True,max_length=128) 
+
+    def __unicode__(self):
+        return self.username

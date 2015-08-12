@@ -73,3 +73,8 @@ html 文件定义
     <p>businessclass are available.</p>
      {% endif %}
 下来应该看看form继承使用，default admin的增删改查
+
+## 2015/8/12 一个小的登录注册 ##
+仿照网上写的，还需细改，具体看代码。
+
+

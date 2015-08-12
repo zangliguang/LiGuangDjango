@@ -57,7 +57,7 @@ ROOT_URLCONF = 'LiGuangWeb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR,  'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'LiGuangWeb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'db_python_liguang',
-        'USER':'root',
-        'PASSWORD':'asd1215225',
+        'NAME': 'db_python_liguang',
+        'USER': 'root',
+        'PASSWORD': 'asd1215225',
     }
 }
 
