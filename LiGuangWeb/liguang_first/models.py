@@ -52,7 +52,7 @@ class Business(models.Model):
 class User(models.Model):
     userid = UUIDField(primary_key=True, editable=False)
     username = models.CharField(max_length=50)
-    password = models.CharField(password=True,max_length=128) 
+    password = models.CharField(max_length=50)
 
     def __unicode__(self):
         return self.username
