@@ -70,7 +70,11 @@ def alogin(req):
                 if user.is_active:
                     auth_login(req, user)
                     print req.user
-                    response = HttpResponseRedirect('/liguang_first/index/')
+                    if not user.is_staff:
+                        response = HttpResponseRedirect(
+                            '/liguang_first/index/')
+                    else:
+                        response = HttpResponseRedirect('/admin/')
                     response.set_cookie('username', username, 3600)
                     return response
                 else:
@@ -86,11 +90,12 @@ def alogin(req):
 
 def index(req):
     username = req.COOKIES.get('username', '')
-    if len(username) !=0 :
-       return render_to_response('index.html', {'username': username})
+    if len(username) != 0:
+        return render_to_response('index.html', {'username': username})
     else:
-      #return render_to_response('liguang_first/login',RequestContext(req))
-      return HttpResponseRedirect('/liguang_first/login/')
+        # return render_to_response('liguang_first/login',RequestContext(req))
+        return HttpResponseRedirect('/liguang_first/login/')
+
 
 # 退出
 
@@ -138,10 +143,10 @@ def register2(request):
                 errors.append('password2 is diff password ')
 
         if account is not None and password is not None and password2 is not None and email is not None and CompareFlag:
-                    user = User.objects.create_user(account, email, password)
-                    user.is_active = True
-                    user.save
-                    return HttpResponseRedirect('/liguang_first/login')
+            user = User.objects.create_user(account, email, password)
+            user.is_active = True
+            user.save
+            return HttpResponseRedirect('/liguang_first/login')
 
     return render_to_response('register2.html',
                               {'errors': errors}, RequestContext(request))

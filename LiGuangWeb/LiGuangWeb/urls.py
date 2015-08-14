@@ -19,6 +19,7 @@ from liguang_first import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bclist/', views.bclist),
-    url('^$', views.rendertoHome),
+    #url('^$', views.rendertoHome),
+    url('^$', views.index),
     url(r'^liguang_first/', include('liguang_first.urls')),
 ]
