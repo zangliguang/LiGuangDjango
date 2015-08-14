@@ -4,10 +4,11 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django import forms
 from django.contrib import auth
-from models import BusinessClass, User
-from django.contrib.auth import authenticate,login as auth_login ,logout
-from django.conf import settings
-from django.utils.importlib import import_module
+from django.contrib.auth.models import User
+from django.template.context_processors import csrf
+from models import BusinessClass
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+
 
 def bclist(request):
     BusinessClasslist = BusinessClass.objects.all()
@@ -85,13 +86,18 @@ def alogin(req):
 
 def index(req):
     username = req.COOKIES.get('username', '')
-    return render_to_response('index.html', {'username': username})
+    if len(username) !=0 :
+       return render_to_response('index.html', {'username': username})
+    else:
+      #return render_to_response('liguang_first/login',RequestContext(req))
+      return HttpResponseRedirect('/liguang_first/login/')
 
 # 退出
 
 
 def logout(req):
     response = HttpResponse('logout !!')
+    auth_logout(req)
     # 清理cookie里保存username
     response.delete_cookie('username')
     return response
@@ -106,6 +112,8 @@ def register2(request):
     CompareFlag = False
 
     if request.method == 'POST':
+        c = {}
+        c.update(csrf(request))
         if not request.POST.get('account'):
             errors.append('Please Enter account')
         else:
@@ -130,12 +138,13 @@ def register2(request):
                 errors.append('password2 is diff password ')
 
         if account is not None and password is not None and password2 is not None and email is not None and CompareFlag:
-            user = User.objects.create_user(account, email, password)
-            user.is_active = True
-            user.save
-            return HttpResponseRedirect('/liguang_first/login')
+                    user = User.objects.create_user(account, email, password)
+                    user.is_active = True
+                    user.save
+                    return HttpResponseRedirect('/liguang_first/login')
 
-    return render_to_response('liguang_first/register2.html', {'errors': errors})
+    return render_to_response('register2.html',
+                              {'errors': errors}, RequestContext(request))
 
 
 def alogout(request):
